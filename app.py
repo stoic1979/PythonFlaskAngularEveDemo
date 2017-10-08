@@ -9,12 +9,13 @@ from eve import Eve
 
 
 # simple flask
-#app = Flask(__name__)
-#mdb = Mdb()
+# app = Flask(__name__)
+# mdb = Mdb()
 
 
 # use when we use EVE Rest api framework
-templ_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+templ_dir = os.path.join(os.path.dirname
+                         (os.path.abspath(__file__)), 'templates')
 app = Eve('App', template_folder=templ_dir)
 mdb = Mdb()
 
@@ -30,6 +31,7 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
+
 
 @app.route('/')
 def main_page():
