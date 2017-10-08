@@ -21,6 +21,18 @@
     <script src="static/js/angular.js"></script>
 
     <script>
+
+
+    function showObject(obj) {
+        var msg = "";
+						for(key in obj) {
+						    msg += key + " = " + obj[key] + "\n";
+						}
+						alert("obj: " + msg);
+
+
+    }
+
         angular.module('myApp', [])
             .controller('HomeCtrl', function($scope, $http) {
 
@@ -30,11 +42,11 @@
 
 				$scope.showlist = function(){
 					$http({
-						method: 'POST',
-						url: '/getMachineList',
+						method: 'GET',
+						url: '/api/machine/',
 
 					}).then(function(response) {
-						$scope.machines = response.data;
+						$scope.machines = response.data._items;
 						console.log('mm',$scope.machines);
 					}, function(error) {
 						console.log(error);
@@ -46,17 +58,21 @@
 				$scope.addMachine = function(){
 
 
+                    //alert($scope.info);
 
 					$http({
 						method: 'POST',
-						url: '/addMachine',
-						data: {info:$scope.info}
+						url: '/api/machine/',
+						data: $scope.info
+
 					}).then(function(response) {
 						$scope.showlist();
 						$('#addPopUp').modal('hide')
 						$scope.info = {}
 					}, function(error) {
 						console.log(error);
+						//alert("error: " + error);
+						//showObject(error["data"]);
 					});
 				}
 

@@ -1,0 +1,7 @@
+API tests with curl CLI
+
+
+Local tests
+=============
+curl -i -X POST -H "Content-Type: application/json" -d "{\"username\": \"mac\", \"ip\": \"1.2.3\", \"device\": \"tom\", \"password\": \"123\", \"port\": \"27017\"}" http://0.0.0.0:5000/api/machine/
+curl -i -X POST -H  "{\"username\": \"mac\", \"ip\": \"1.2.3\", \"device\": \"tom\", \"password\": \"123\", \"port\": \"27017\"}" http://0.0.0.0:5000/api/machine/
